@@ -1,13 +1,8 @@
-"""
-conseguir todas las paginas de  una busqueda:
-    try abrir pagina count:
-        cuerpo
-        count++
-    except eception as err
-"""
 import urllib.request
 import urllib.error
 import sys
+import re
+
 opener = urllib.request.build_opener()
 opener.addheaders = [('User-Agent', 'MyApp/1.0')]
 urllib.request.install_opener(opener)
@@ -25,12 +20,21 @@ while True:
         url = url_base + libro + url_end    
         page = urllib.request.urlopen(url)
         html_bytes = page.read()
-        hmtl = html_bytes.decode("utf-8")
+        html = html_bytes.decode("utf-8")
+
+        start_pattern = re.compile(r"<script type=\"application/ld\+json\" nonce=\".*?\"")
+        start_match = start_pattern.search(html)
+        start = start_match.group()
+        start_index = html.find(start)
+        started_text = html[start_index + len(start) + 2 :]
+
+        end_index = started_text.find("</script>")
+        text = started_text[:end_index - 1]
         
-        file = "pages/"+str(count+1)
+        file = "/home/void/Escritorio/Python/scraper/pages/"+str(count+1)
         print(f"writing html of {url} to {file}")
         with open(file,"w") as f:
-            f.write(hmtl)
+            f.write(text)
 
         count += 1
 

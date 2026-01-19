@@ -1,0 +1,3 @@
+the get_pages program gets the mercadolibre pages of the book you want to search, retreiving the html of each page into a file, leaving only the part with the info of each book.
+after this, the get_prices shoud go through each file and retrieve the improtant info and organize it
+
