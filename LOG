@@ -1,0 +1,16 @@
+19-01-2026
+set up github and gitlab
+fixed get_pages to only put important info on files
+started work on the get_prices
+
+20-01-2026
+updated log
+almost done w/ get_prices
+
+i have to:
+  find out what is wrong with get_prices and finish it X
+  sanitize and make user input prettier, also start taking command-line arguments
+
+21-01-2026
+done get_prices and made it more efficient
+started with sanitizing user input and making the cli

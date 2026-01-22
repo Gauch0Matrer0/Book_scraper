@@ -1,66 +1,29 @@
 import re
 from os import listdir
 
-pages = listdir("/home/void/Escritorio/Python/scraper/pages")
+def penis_man():
+    print("penis man")
+
+path_to_pages = "/home/void/Escritorio/Python/scraper/pages/"
+pages = listdir(path_to_pages)
+i = 0
 for item in pages:
     
-    page = "/home/void/Escritorio/Python/scraper/pages/" + item
+    page = path_to_pages + item
     with open(page,"r") as file:
         text = file.read()
 
-    state = 0
-    buffer = []
-    storage = []
+    storage = text.split("\"@type\":\"Product\"")
+    del storage[0]
 
-    for c in text:
-        if (c == '{'):
-            state = 1
-        elif(c != '{' and c != '}' and state == 1):
-            buffer.append(c)
-        elif(c == '}'):
-            state = 0
-            buffer = "".join(buffer)
-            storage.append(buffer)
-            buffer = []
-
-
-    with open("/home/void/Escritorio/Python/scraper/pages/all_products.txt","a") as final_file:
-        for product in storage:
-            final_file.write(product + '\n')
-
-        #conseguir precios de los libros
-          
-        #enviarlo a un archivo con todos los libros
-
-
-r"""
-state = 0
-buffer = []
-storage = []
-
-for c in text:
-    if (c == '{'):
-        buffer.append(c)
-        state = 1
-    elif(c != '{' and c != '}' and state == 1):
-        buffer.append(c)
-    elif(c == '}')
-        buffer.append(c)
-        state = 0
-        buffer = "".join(buffer)
-        storage.append(buffer)
-        buffer = []
-
-for product in buffer:
-    print(product)
-    price_pattern = re.compile(r"\"price\":(\d*)")
-    price_match = price_pattern.search(product)
-    price = price_match.group()
-    
     name_pattern = re.compile(r"\"name\":\"([^\"]*)\"")
-    name_match = name_pattern.search(product)
-    name = name_match.group
+    price_pattern = re.compile(r"\"price\":(\d*)")
 
-    print(f"{buffer.index(product)}. {name} - {price}")
-"""
-
+    for product in storage:
+        i += 1
+        price_match = price_pattern.search(product)
+        price = price_match.group()
+        name_match = name_pattern.search(product)
+        name = name_match.group()
+        with open(path_to_pages + "products", "a") as products_file:
+            products_file.write(f"{i}. {name}\t${price}\n")
