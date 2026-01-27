@@ -1,4 +1,8 @@
-import sys
-from get_prices import penis_man
+import re
 
-penis_man()
+with open("out.txt","r") as f:
+    text = f.read()
+
+    pattern = re.compile(r"\"application/ld\+json\"")
+    match = pattern.search(text)
+    print(match.group())

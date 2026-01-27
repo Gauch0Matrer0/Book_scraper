@@ -1,11 +1,10 @@
 import re
 from os import listdir
 
-def penis_man():
-    print("penis man")
 
 path_to_pages = "/home/void/Escritorio/Python/scraper/pages/"
 pages = listdir(path_to_pages)
+
 i = 0
 for item in pages:
     
@@ -26,4 +25,4 @@ for item in pages:
         name_match = name_pattern.search(product)
         name = name_match.group()
         with open(path_to_pages + "products", "a") as products_file:
-            products_file.write(f"{i}. {name}\t${price}\n")
+            products_file.write(f"{i}. {name}\t{price}\n")
