@@ -1,8 +1,7 @@
+import urllib.request
 import re
 
-with open("out.txt","r") as f:
-    text = f.read()
-
-    pattern = re.compile(r"\"application/ld\+json\"")
-    match = pattern.search(text)
-    print(match.group())
+opener = urllib.request.build_opener()
+opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+with opener.open('https://listado.mercadolibre.com.ar/mao-tse-tung-el-libro-rojo_NoIndex_True_desde_1') as f:
+   print(f.read().decode('utf-8')h 

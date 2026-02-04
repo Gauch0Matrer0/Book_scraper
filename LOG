@@ -14,3 +14,10 @@ i have to:
 21-01-2026
 done get_prices and made it more efficient
 started with sanitizing user input and making the cli
+
+29-01-2026
+havent used the log in a while, rn i got the get_pages working i got kinda the structure of how the program is gonna look and be used.
+to-do:
+  figure out how to get the urls of books
+  find out how to get rid of bad products
+  
